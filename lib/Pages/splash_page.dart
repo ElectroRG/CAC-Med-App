@@ -5,20 +5,27 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Container(
-      width: 393,
-      height: 852,
+      width: screenWidth,
+      height: screenHeight,
       clipBehavior: Clip.antiAlias,
       decoration: const BoxDecoration(color: Color(0xFFB9D1EA)),
       child: Stack(
         children: [
           Positioned(
-            left: 10,
-            top: 23,
+            left: screenWidth * 0.025,
+            top: screenHeight * 0.027,
             child: Container(
-              width: 371,
-              height: 697,
-              padding: const EdgeInsets.only(top: 72, right: 317, bottom: 525),
+              width: screenWidth * 0.95,
+              height: screenHeight * 0.82,
+              padding: EdgeInsets.only(
+                top: screenHeight * 0.085,
+                right: screenWidth * 0.8,
+                bottom: screenHeight * 0.62,
+              ),
               clipBehavior: Clip.antiAlias,
               decoration: ShapeDecoration(
                 color: const Color(0xFFACABFF),
@@ -31,28 +38,21 @@ class SplashPage extends StatelessWidget {
                     blurRadius: 4,
                     offset: Offset(1, 1),
                     spreadRadius: 3,
-                  )
+                  ),
                 ],
               ),
               child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                     width: double.infinity,
-                    height: 100,
-                    padding: const EdgeInsets.only(top: 2, right: 4),
+                    height: screenHeight * 0.12,
                     clipBehavior: Clip.antiAlias,
                     decoration: const BoxDecoration(),
                     child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          width: 100,
-                          height: 100,
+                          width: screenWidth * 0.25,
+                          height: screenHeight * 0.12,
                           clipBehavior: Clip.antiAlias,
                           decoration: const BoxDecoration(),
                         ),
@@ -64,12 +64,16 @@ class SplashPage extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 11,
-            top: 22,
+            left: screenWidth * 0.028,
+            top: screenHeight * 0.026,
             child: Container(
-              width: 371,
-              height: 697,
-              padding: const EdgeInsets.only(top: 72, right: 317, bottom: 525),
+              width: screenWidth * 0.95,
+              height: screenHeight * 0.82,
+              padding: EdgeInsets.only(
+                top: screenHeight * 0.085,
+                right: screenWidth * 0.8,
+                bottom: screenHeight * 0.62,
+              ),
               clipBehavior: Clip.antiAlias,
               decoration: ShapeDecoration(
                 color: const Color(0xFF6795C5),
@@ -82,28 +86,21 @@ class SplashPage extends StatelessWidget {
                     blurRadius: 4,
                     offset: Offset(1, 1),
                     spreadRadius: 3,
-                  )
+                  ),
                 ],
               ),
               child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                     width: double.infinity,
-                    height: 100,
-                    padding: const EdgeInsets.only(top: 2, right: 4),
+                    height: screenHeight * 0.12,
                     clipBehavior: Clip.antiAlias,
                     decoration: const BoxDecoration(),
                     child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          width: 100,
-                          height: 100,
+                          width: screenWidth * 0.25,
+                          height: screenHeight * 0.12,
                           clipBehavior: Clip.antiAlias,
                           decoration: const BoxDecoration(),
                         ),
@@ -115,15 +112,13 @@ class SplashPage extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 20,
-            top: 504,
+            left: screenWidth * 0.05,
+            top: screenHeight * 0.59,
             child: Container(
-              height: 54,
-              padding: const EdgeInsets.only(
-                top: 17,
-                left: 19,
-                right: 127,
-                bottom: 17,
+              height: screenHeight * 0.06,
+              padding: EdgeInsets.symmetric(
+                vertical: screenHeight * 0.02,
+                horizontal: screenWidth * 0.1,
               ),
               decoration: ShapeDecoration(
                 color: const Color(0xFF175986),
@@ -136,82 +131,27 @@ class SplashPage extends StatelessWidget {
                     blurRadius: 4,
                     offset: Offset(0, 3),
                     spreadRadius: 0,
-                  )
-                ],
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 20,
-                    child: Stack(
-                      children: [
-                        const Positioned(
-                          left: 34,
-                          top: 0,
-                          child: Text(
-                            'Continue with Google',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w600,
-                              height: 0.08,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          left: 0,
-                          top: 0,
-                          child: Container(
-                            width: 20,
-                            height: 20,
-                            padding: const EdgeInsets.only(left: 1, right: 0.83, bottom: 1),
-                            clipBehavior: Clip.antiAlias,
-                            decoration: BoxDecoration(),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 18.17,
-                                  height: 19,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  ),
-                                  child: const Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                 ],
+              ),
+              child: const Text(
+                'Continue with Google',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
           Positioned(
-            left: 20,
-            top: 572,
+            left: screenWidth * 0.05,
+            top: screenHeight * 0.66,
             child: Container(
-              height: 54,
-              padding: const EdgeInsets.only(
-                top: 17,
-                left: 19,
-                right: 127,
-                bottom: 17,
+              height: screenHeight * 0.06,
+              padding: EdgeInsets.symmetric(
+                vertical: screenHeight * 0.02,
+                horizontal: screenWidth * 0.1,
               ),
               decoration: ShapeDecoration(
                 color: const Color(0xFF2374AB),
@@ -231,140 +171,27 @@ class SplashPage extends StatelessWidget {
                     blurRadius: 4,
                     offset: Offset(0, 2),
                     spreadRadius: 0,
-                  )
-                ],
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 20,
-                    child: Stack(
-                      children: [
-                        const Positioned(
-                          left: 34,
-                          top: 0,
-                          child: Text(
-                            'Continue with Apple',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w600,
-                              height: 0.08,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          left: 0,
-                          top: 0,
-                          child: Container(
-                            width: 20,
-                            height: 20,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: const BoxDecoration(),
-                            child: const Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                 ],
               ),
-            ),
-          ),
-          Positioned(
-            left: 20,
-            top: 572,
-            child: Container(
-              height: 54,
-              padding: const EdgeInsets.only(
-                top: 17,
-                left: 19,
-                right: 127,
-                bottom: 17,
-              ),
-              decoration: ShapeDecoration(
-                color: const Color(0xFF175986),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(28),
+              child: const Text(
+                'Continue with Apple',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
                 ),
-                shadows: const [
-                  BoxShadow(
-                    color: Color(0x3F000000),
-                    blurRadius: 4,
-                    offset: Offset(0, -1),
-                    spreadRadius: 0,
-                  ),
-                  BoxShadow(
-                    color: Color(0x3F000000),
-                    blurRadius: 4,
-                    offset: Offset(0, 1),
-                    spreadRadius: 0,
-                  )
-                ],
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 20,
-                    child: Stack(
-                      children: [
-                        const Positioned(
-                          left: 34,
-                          top: 0,
-                          child: Text(
-                            'Continue with Apple',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w600,
-                              height: 0.08,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          left: 0,
-                          top: 0,
-                          child: Container(
-                            width: 20,
-                            height: 20,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: const BoxDecoration(),
-                            child: const Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
           Positioned(
-            left: 20,
-            top: 640,
+            left: screenWidth * 0.05,
+            top: screenHeight * 0.73,
             child: Container(
-              height: 54,
-              padding: const EdgeInsets.only(
-                top: 17,
-                left: 19,
-                right: 127,
-                bottom: 17,
+              height: screenHeight * 0.06,
+              padding: EdgeInsets.symmetric(
+                vertical: screenHeight * 0.02,
+                horizontal: screenWidth * 0.1,
               ),
               decoration: ShapeDecoration(
                 color: const Color(0xFF175986),
@@ -377,110 +204,42 @@ class SplashPage extends StatelessWidget {
                     blurRadius: 4,
                     offset: Offset(0, -3),
                     spreadRadius: 0,
-                  )
-                ],
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 20,
-                    child: Stack(
-                      children: [
-                        const Positioned(
-                          left: 34,
-                          top: 0,
-                          child: Text(
-                            'Continue with Email',
-                            style: TextStyle(
-                              color: Color(0xFFFDFAFA),
-                              fontSize: 16,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w600,
-                              height: 0.08,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          left: 0,
-                          top: 0,
-                          child: Container(
-                            width: 20,
-                            height: 20,
-                            padding: const EdgeInsets.only(
-                              top: 3,
-                              left: 1,
-                              right: 1,
-                              bottom: 2.18,
-                            ),
-                            clipBehavior: Clip.antiAlias,
-                            decoration: const BoxDecoration(),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 18,
-                                  height: 14.82,
-                                  decoration: ShapeDecoration(
-                                    image: const DecorationImage(
-                                      image: NetworkImage("https://via.placeholder.com/18x15"),
-                                      fit: BoxFit.fill,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                 ],
+              ),
+              child: const Text(
+                'Continue with Email',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
           Positioned(
-            left: 87,
-            top: 769,
+            left: screenWidth * 0.2,
+            top: screenHeight * 0.9,
             child: Text.rich(
               TextSpan(
                 children: [
                   TextSpan(
                     text: 'Already have an account?',
                     style: TextStyle(
-                      color: Colors.black.withOpacity(0.699999988079071),
+                      color: Colors.black.withOpacity(0.7),
                       fontSize: 14,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
-                      height: 0.09,
                     ),
                   ),
                   const TextSpan(
                     text: ' ',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
-                      height: 0.09,
-                    ),
                   ),
                   const TextSpan(
                     text: 'Log in',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 14,
-                      fontFamily: 'Inter',
                       fontWeight: FontWeight.w600,
                       decoration: TextDecoration.underline,
-                      height: 0.09,
                     ),
                   ),
                 ],
@@ -505,7 +264,6 @@ class SplashPage extends StatelessWidget {
                         fontSize: 30,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w700,
-                        height: 0.04,
                         letterSpacing: -0.30,
                       ),
                     ),
@@ -523,7 +281,6 @@ class SplashPage extends StatelessWidget {
                           fontSize: 16,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w400,
-                          height: 0.08,
                         ),
                       ),
                     ),
