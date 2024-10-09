@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:cac_med_app/components/carousel.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    final size = MediaQuery.of(context).size;
+    final List<String> urls = ['assets/health checkup.jpg', 'assets/Medical Cartoon Vector.jpg', 'assets/Medical Time Cartoon Reminder.webp'];
+
     return Container(
         color: const Color.fromRGBO(185, 209, 234, 1),
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -13,8 +18,8 @@ class SplashPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 80.0),
             child: Container(
-              height: 597,
-              width: 371,
+              height: size.height-300,
+              width: size.width-25,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(32),
                   color: const Color.fromRGBO(103, 150, 198, 100),
@@ -28,6 +33,7 @@ class SplashPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  Carousel(urls: urls),
                   const Padding(
                     padding: EdgeInsets.all(16),
                     child: Text(
@@ -107,7 +113,7 @@ class SplashPage extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: const EdgeInsets.all(60.0),
+            padding: EdgeInsets.all(60.0),
             child: Text('Already have an account? Log in'),
           )
         ]));
