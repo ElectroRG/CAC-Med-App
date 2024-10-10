@@ -1,3 +1,5 @@
+import 'package:cac_med_app/AppBars/appbarMedShop.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Medshop extends StatelessWidget {
@@ -5,11 +7,14 @@ class Medshop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 393,
-      height: 852,
-      clipBehavior: Clip.antiAlias,
-      decoration: const BoxDecoration(color: Color(0xFFB9D1EA)),
+    return CupertinoPageScaffold(
+      navigationBar: Appbar1(
+        height: 170,
+      ),
+      backgroundColor: const Color.fromRGBO(185, 209, 234, 1),
+      child: Container(
+
+      )
     );
   }
 }
