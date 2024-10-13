@@ -12,8 +12,29 @@ class MedStoreItemIcons extends StatelessWidget{
       height: 200,
       width: 170,
       decoration: BoxDecoration(
-        color: Color.fromRGBO(243, 244, 245, 1),
+        color: Color.fromRGBO(218, 237, 255, 1),
         borderRadius: BorderRadius.circular(20)
+      ),
+      child: Center(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(name,
+              style: TextStyle(
+                color: CupertinoColors.black
+              ),),
+            ),
+            Image.asset(image_url,
+            height: 50,
+            width: 100,
+            fit: BoxFit.cover,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Price: '),
+            )
+          ],
+        ),
       ),
     );
   }
