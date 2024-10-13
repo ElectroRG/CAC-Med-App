@@ -1,4 +1,5 @@
-import 'package:cac_med_app/pages/splash_page.dart';
+import 'package:cac_med_app/Medstore/med_shop_page.dart';
+//import 'package:cac_med_app/pages/splash_page.dart';
 import 'package:flutter/cupertino.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const CupertinoApp(
       title: 'Flutter Demo',
-      home: SplashPage(),
+      home: Medshop(),
     );
   }
 }
