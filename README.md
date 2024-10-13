@@ -1,4 +1,4 @@
-# cac_med_app
+# CAC Medical App
 
 A medical app that helps users easily access their medical statistics, medicine, and doctors.
 
