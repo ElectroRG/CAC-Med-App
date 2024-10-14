@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
+// ignore: must_be_immutable
 class MedStoreItemIcons extends StatelessWidget{
   MedStoreItemIcons({super.key, required this.name, this.image_url});
   final String name;
@@ -25,14 +26,14 @@ class MedStoreItemIcons extends StatelessWidget{
                 color: CupertinoColors.black
               ),),
             ),
-            Image.asset(image_url,
-            height: 50,
-            width: 100,
-            fit: BoxFit.cover,),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Price: '),
-            )
+            // Image.asset(image_url,
+            // height: 50,
+            // width: 100,
+            // fit: BoxFit.cover,),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Text('Price: '),
+            // )
           ],
         ),
       ),
