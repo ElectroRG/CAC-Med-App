@@ -33,41 +33,11 @@ class Medshop extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      MedStoreItemIcons(name: 'name'),
-                      MedStoreItemIcons(name: 'p'),
+                      MedStoreItemIcons(name: 'name', image_url: 'assets/Medical Cartoon Vector.jpg',),
+                      // MedStoreItemIcons(name: 'p'),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      MedStoreItemIcons(name: 'name'),
-                      MedStoreItemIcons(name: 'p'),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      MedStoreItemIcons(name: 'name'),
-                      MedStoreItemIcons(name: 'p'),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      MedStoreItemIcons(name: 'name'),
-                      MedStoreItemIcons(name: 'p'),
-                    ],
-                  ),
-                )
               ],
             ),
           ),

@@ -26,14 +26,14 @@ class MedStoreItemIcons extends StatelessWidget{
                 color: CupertinoColors.black
               ),),
             ),
-            // Image.asset(image_url,
-            // height: 50,
-            // width: 100,
-            // fit: BoxFit.cover,),
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: Text('Price: '),
-            // )
+            Image.asset(image_url,
+            height: 100,
+            width: 170-30,
+            fit: BoxFit.cover,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Price: '),
+            )
           ],
         ),
       ),
