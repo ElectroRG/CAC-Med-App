@@ -99,7 +99,7 @@ class _Appbar1State extends State<Appbar1> with SingleTickerProviderStateMixin {
                   trailing: CupertinoButton(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                     child: const Icon(
-                      CupertinoIcons.cart_fill,
+                      CupertinoIcons.chat_bubble_text_fill,
                       size: 30,
                       color: CupertinoColors.white,
                     ),

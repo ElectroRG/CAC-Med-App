@@ -21,7 +21,7 @@ class _CarouselState extends State<Carousel> {
         CarouselSlider(
           items: List.generate(widget.urls.length, (index) => MyImage(url: widget.urls[index])),
           options: CarouselOptions(
-            autoPlay: false, // Enable auto-play
+            autoPlay: true, // Enable auto-play
             enlargeCenterPage: true, // Increase the size of the center item
             enableInfiniteScroll: false, // Enable infinite scroll
             onPageChanged: (index, reason) {

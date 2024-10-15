@@ -1,10 +1,17 @@
 import 'package:cac_med_app/AppBars/appbarMedShop.dart';
+import 'package:cac_med_app/Medstore/cart.dart';
+import 'package:cac_med_app/Medstore/item_page.dart';
 import 'package:cac_med_app/components/med_Store_item_icons.dart';
 import 'package:flutter/cupertino.dart';
 
-class Medshop extends StatelessWidget {
+class Medshop extends StatefulWidget {
   const Medshop({super.key});
 
+  @override
+  State<Medshop> createState() => _MedshopState();
+}
+
+class _MedshopState extends State<Medshop> {
   @override
   Widget build(BuildContext context) {
     List<String> dropdownItems = ['Home', 'prescribed', 'over the counter'];
@@ -19,7 +26,6 @@ class Medshop extends StatelessWidget {
           },
           onPressed: () {
             // Handle cart button press
-            print('Cart button pressed');
           },
         ),
         backgroundColor: const Color.fromRGBO(185, 209, 234, 1),
@@ -33,7 +39,11 @@ class Medshop extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      MedStoreItemIcons(name: 'name', image_url: 'assets/Medical Cartoon Vector.jpg',),
+                      MedStoreItemIcons(
+                        name: 'name',
+                        imageUrl: 'assets/Medical Cartoon Vector.jpg',
+                        page: ItemPage(itemName: 'name', url: 'assets/Medical Cartoon Vector.jpg'),
+                      ),
                       // MedStoreItemIcons(name: 'p'),
                     ],
                   ),

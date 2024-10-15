@@ -1,3 +1,6 @@
+import 'package:cac_med_app/AppBars/appBar_normal.dart';
+import 'package:cac_med_app/Medstore/med_shop_page.dart';
+import 'package:cac_med_app/components/done_button.dart';
 import 'package:flutter/cupertino.dart';
 
 class ItemPage extends StatelessWidget {
@@ -9,14 +12,21 @@ class ItemPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
+      navigationBar: AppbarNormal(title: itemName, height: 150),
       child: Center(
           child: Column(children: [
         Text(itemName),
         Padding(padding: EdgeInsets.all(16)),
-        Image.asset(url,
-        height:60,
-        width: 50,
-        fit: BoxFit.fill,)
+        ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Image.asset(url,
+          height:300,
+          width: 300,
+          fit: BoxFit.fill,),
+        ),
+        DoneButton(
+          page: Medshop(),
+        )
       ])),
     );
   }
