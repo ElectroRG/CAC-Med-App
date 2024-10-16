@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCTEajLKgfJ9gv0bXluFiikNqH1hTqBw30',
-    appId: '1:794000703919:android:e3670c48ffc3441de26f5a',
-    messagingSenderId: '794000703919',
-    projectId: 'cac-med-app',
-    storageBucket: 'cac-med-app.appspot.com',
+    apiKey: 'AIzaSyCRkC-UrbjsN55nDGmo1LzAbTy5vOpZ4w4',
+    appId: '1:929656079359:android:cfd4211f75874f1d891dca',
+    messagingSenderId: '929656079359',
+    projectId: 'cac-app-2be2a',
+    storageBucket: 'cac-app-2be2a.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCSOeu9ElbvyhSgsqWJNUXMLrW44cuo-cA',
-    appId: '1:794000703919:ios:9c36efe082f5aabce26f5a',
-    messagingSenderId: '794000703919',
-    projectId: 'cac-med-app',
-    storageBucket: 'cac-med-app.appspot.com',
+    apiKey: 'AIzaSyC1U9E1Tu5Agq2LxIw9j37Zn5T85seg5-g',
+    appId: '1:929656079359:ios:595ad4d70952b430891dca',
+    messagingSenderId: '929656079359',
+    projectId: 'cac-app-2be2a',
+    storageBucket: 'cac-app-2be2a.appspot.com',
     iosBundleId: 'com.example.cacMedApp',
   );
 }

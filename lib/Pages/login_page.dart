@@ -131,11 +131,6 @@ class _LoginState extends State<Login> {
                   onTap: () => AuthService().signInWithGoogle(),
                   imagePath: 'lib/images/Apple.png',
                 ),
-                const SizedBox(width: 20),
-                SquareTile(
-                  onTap: () {},
-                  imagePath: 'lib/images/Apple.png',
-                ),
               ],
             ),
             const SizedBox(height: 75),

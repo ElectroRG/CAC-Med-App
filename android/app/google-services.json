@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "929656079359",
+    "project_id": "cac-app-2be2a",
+    "storage_bucket": "cac-app-2be2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929656079359:android:cfd4211f75874f1d891dca",
+        "android_client_info": {
+          "package_name": "com.cac.pp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRkC-UrbjsN55nDGmo1LzAbTy5vOpZ4w4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
