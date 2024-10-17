@@ -1,27 +1,33 @@
-import 'package:cac_med_app/components/MyButton.dart';
+import 'package:cac_med_app/Pages/home_page.dart';
 import 'package:cac_med_app/components/textfield.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-
-
-class Regisration extends StatefulWidget {
-  const Regisration({super.key});
+class Registration extends StatefulWidget {
+  const Registration({super.key});
 
   @override
-  State<Regisration> createState() => _RegisrationState();
+  State<Registration> createState() => _RegistrationState();
 }
 
-class _RegisrationState extends State<Regisration> {
+class _RegistrationState extends State<Registration> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   bool isChecked = false; // State for checkbox
 
-  void logUserIn() {
-    // Add your login logic here
+  bool isLoginValid() {
+    bool isEmailValid = EmailValidator.validate(emailController.text.trim(), true, true);
+
+    RegExp passwordRegex = RegExp(r'^(?=.*?[A-Z])(?=.*?[0-9]).{6,}$');
+    bool isPasswordValid = passwordRegex.hasMatch(passwordController.text.trim());
+
+    print("HIIII");
+
+    return isEmailValid && isPasswordValid && isChecked;
   }
 
   @override
@@ -56,7 +62,7 @@ class _RegisrationState extends State<Regisration> {
                 ],
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 25),
             MyTextField(
               controller: usernameController,
               hintText: 'Username',
@@ -74,7 +80,7 @@ class _RegisrationState extends State<Regisration> {
               hintText: 'Password',
               obscureText: true,
             ),
-            const SizedBox(height: 5),
+            const SizedBox(height: 10),
 
             // Checkbox for accepting terms and privacy policy
             Padding(
@@ -90,7 +96,7 @@ class _RegisrationState extends State<Regisration> {
                     checkColor: Colors.white,
                     onChanged: (value) {
                       setState(() {
-                        isChecked = value ?? false; // Update checkbox state
+                        isChecked = !isChecked; // Update checkbox state
                       });
                     },
                   ),
@@ -123,16 +129,36 @@ class _RegisrationState extends State<Regisration> {
               ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
 
-            MyButton(
-              onTap: isChecked
-                  ? logUserIn
-                  : null, // Disable button if checkbox is not checked
-              buttonText: 'Sign Up',
+            SizedBox(
+              width: 250,
+              height: 55,
+              child: CupertinoButton(
+                onPressed: isLoginValid() ? () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Homepage(),
+                          ),
+                        );
+                        SystemChannels.textInput.invokeMethod('TextInput.hide');
+                      }
+                      : null,
+                color: CupertinoColors.activeBlue,
+                disabledColor: CupertinoColors.systemGrey,
+                child: Text(
+                  'Sign Up',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
 
-            const SizedBox(height: 200),
+            const SizedBox(height: 30),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

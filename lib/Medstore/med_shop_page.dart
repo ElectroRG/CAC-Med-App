@@ -1,5 +1,5 @@
 import 'package:cac_med_app/AppBars/appbarMedShop.dart';
-import 'package:cac_med_app/Medstore/cart.dart';
+// import 'package:cac_med_app/Medstore/cart.dart';
 import 'package:cac_med_app/Medstore/item_page.dart';
 import 'package:cac_med_app/components/med_Store_item_icons.dart';
 import 'package:flutter/cupertino.dart';
