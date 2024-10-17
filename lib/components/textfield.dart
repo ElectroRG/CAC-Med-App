@@ -1,11 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MyTextField extends StatelessWidget {
-  final TextEditingController controller; // Specify type for clarity
+class MyCupertinoTextField extends StatelessWidget {
+  final TextEditingController controller;
   final String hintText;
   final bool obscureText;
 
-  const MyTextField({
+  const MyCupertinoTextField({
     super.key,
     required this.controller,
     required this.hintText,
@@ -15,25 +16,23 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25), // Added const here
-      child: TextField(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: CupertinoTextField(
         controller: controller,
         obscureText: obscureText,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.white, // Background color
-          hintText: hintText,
-          hintStyle: TextStyle(color: Colors.black),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-          ),
+        placeholder: hintText, // Set placeholder to an empty string to remove it
+        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10), // Padding inside the text field
+        decoration: BoxDecoration(
+          color: Colors.white, // Background color
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: Colors.white), // Border when disabled
         ),
+        // Remove prefix if you don't want any text in the text field
+        // Alternatively, if you want to keep a hint style, you can customize it differently.
+        // Example: If you want to keep an icon instead of text, you could do this:
       ),
     );
   }
 }
+
+

@@ -1,10 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
   final String buttonText;
-  Function()? onTap;
+  final Function()? onTap;
 
-  MyButton({
+  const MyButton({
     super.key,
     required this.onTap,
     required this.buttonText,
@@ -12,26 +13,24 @@ class MyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.all(17.5),
-        margin: EdgeInsets.symmetric(horizontal: 25),
-        decoration: BoxDecoration(
-          color: Color(0xFF185A87),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Center(
-          child: Text(
-            buttonText,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-            ),
+    return SizedBox(
+      width: 340, // Set your desired width here
+      child: CupertinoButton(
+        onPressed: onTap,
+        color: Color(0xFF185A87), // Button color
+        padding: EdgeInsets.symmetric(vertical: 17.5), // Padding
+        borderRadius: BorderRadius.circular(12), // Rounded corners
+        child: Text(
+          buttonText,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
     );
   }
 }
+
+
