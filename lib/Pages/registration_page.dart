@@ -57,19 +57,19 @@ class _RegisrationState extends State<Regisration> {
               ),
             ),
             const SizedBox(height: 30),
-            MyTextField(
+            MyCupertinoTextField(
               controller: usernameController,
               hintText: 'Username',
               obscureText: false,
             ),
             const SizedBox(height: 30),
-            MyTextField(
+            MyCupertinoTextField(
               controller: emailController,
               hintText: 'Email',
               obscureText: false,
             ),
             const SizedBox(height: 30),
-            MyTextField(
+            MyCupertinoTextField(
               controller: passwordController,
               hintText: 'Password',
               obscureText: true,
