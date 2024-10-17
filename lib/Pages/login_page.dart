@@ -13,14 +13,14 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   //signUserIn
   void signUserIn() async {
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: usernameController.text.trim(),
+        email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
       print("Login successful! User: ${credential.user?.email}");
@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
 
   @override
   void dispose() {
-    usernameController.dispose();
+    emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
@@ -68,8 +68,8 @@ class _LoginState extends State<Login> {
             ),
             const SizedBox(height: 30),
             MyTextField(
-              controller: usernameController,
-              hintText: 'Username',
+              controller: emailController,
+              hintText: 'Email',
               obscureText: false,
             ),
             const SizedBox(height: 30),
@@ -85,7 +85,7 @@ class _LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    'Forgot Password ?',
+                    'Forgot Password?',
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,

@@ -64,12 +64,6 @@ class _RegistrationState extends State<Registration> {
             ),
             const SizedBox(height: 25),
             MyTextField(
-              controller: usernameController,
-              hintText: 'Username',
-              obscureText: false,
-            ),
-            const SizedBox(height: 30),
-            MyTextField(
               controller: emailController,
               hintText: 'Email',
               obscureText: false,
