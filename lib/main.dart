@@ -1,8 +1,7 @@
-import 'package:cac_med_app/Medstore/med_shop_page.dart';
-import 'package:cac_med_app/Pages/auth_page.dart';
 import 'package:cac_med_app/Pages/chatbot_page.dart';
-import 'package:cac_med_app/Pages/login_page.dart';
+import 'package:cac_med_app/Pages/home_page.dart';
 import 'package:cac_med_app/Pages/registration_page.dart';
+import 'package:cac_med_app/Pages/splash_page.dart';
 import 'package:cac_med_app/Pages/splash_page.dart';
 //import 'package:cac_med_app/pages/splash_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,10 +24,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CupertinoApp(
+    return MaterialApp(
+      title: 'Med App',
+      home: Chatbot(),
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home:AuthPage( ),
     );
   }
 }
