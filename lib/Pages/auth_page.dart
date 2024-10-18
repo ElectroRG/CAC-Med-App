@@ -1,5 +1,4 @@
 import 'package:cac_med_app/Pages/home.dart';
-import 'package:cac_med_app/Pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
