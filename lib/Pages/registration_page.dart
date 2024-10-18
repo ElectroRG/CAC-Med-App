@@ -4,6 +4,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:cac_med_app/components/textfield.dart';
 
 class Registration extends StatefulWidget {
   const Registration({super.key});
@@ -63,13 +64,13 @@ class _RegistrationState extends State<Registration> {
               ),
             ),
             const SizedBox(height: 25),
-            MyTextField(
+            MyCupertinoTextField(
               controller: emailController,
               hintText: 'Email',
               obscureText: false,
             ),
             const SizedBox(height: 30),
-            MyTextField(
+            MyCupertinoTextField(
               controller: passwordController,
               hintText: 'Password',
               obscureText: true,
