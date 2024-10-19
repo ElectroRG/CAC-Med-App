@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart'; // Needed for animations
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cac_med_app/Pages/Doctor_chat.dart';
 
 class Appbar1 extends StatefulWidget implements ObstructingPreferredSizeWidget {
   Appbar1({
@@ -104,7 +105,10 @@ class _Appbar1State extends State<Appbar1> with SingleTickerProviderStateMixin {
                       color: CupertinoColors.white,
                     ),
                     onPressed: () {
-                      if (widget.onPressed != null) widget.onPressed!();
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => DoctorChat()));
                     },
                   ),
                   middle: Text(

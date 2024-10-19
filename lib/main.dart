@@ -1,3 +1,4 @@
+import 'package:cac_med_app/Medstore/med_shop_page.dart';
 import 'package:cac_med_app/Pages/chatbot_page.dart';
 import 'package:cac_med_app/Pages/home_page.dart';
 import 'package:cac_med_app/Pages/registration_page.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Med App',
-      home: Chatbot(),
+      home: Medshop(),
       debugShowCheckedModeBanner: false,
     );
   }
