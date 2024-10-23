@@ -23,7 +23,7 @@ class SplashPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 80.0),
             child: Container(
-              height: size.height - 325,
+              height: size.height - 260,
               width: size.width - 25,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(32),
