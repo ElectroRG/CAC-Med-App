@@ -44,7 +44,7 @@ class MedStoreItemIcons extends StatelessWidget {
               if (imageUrl != null)
                 Image.network(
                   imageUrl!,
-                  height: 122,
+                  height: 112,
                   width: 170 - 30,
                   fit: fit, // Use the fit parameter to customize image fit
                 ),
