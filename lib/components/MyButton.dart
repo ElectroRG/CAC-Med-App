@@ -20,7 +20,7 @@ class MyButton extends StatelessWidget {
         onPressed: onTap,
         color: const Color.fromRGBO(24, 90, 135, 100),
         padding: EdgeInsets.symmetric(vertical: 17.5),
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(35),
         child: Text(
           buttonText,
           style: TextStyle(

@@ -141,7 +141,7 @@ class _LoginState extends State<Login> {
               padding: const EdgeInsets.only(bottom: 10),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/registration');
+                  AuthService().signInWithGoogle();
                 },
                 child: Container(
                   width: 353,
