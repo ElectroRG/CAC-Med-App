@@ -53,8 +53,8 @@ class NavigationController extends GetxController{
   final Rx<int> selectedIndex = 0.obs;
   final screens = [
     Home_two(),
-    Medshop(),
     Chatbot(),
+    Medshop(),
     Medshop(),
   ];
 
