@@ -13,6 +13,7 @@ class ItemPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
+      backgroundColor: Color(0xFFB9D1EA),
       navigationBar: AppbarNormal(title: itemName, height: 150),
       child: Center(
         child: Column(
