@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Med App',
-      home: SplashPage(),
+      home: Homepage(),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
