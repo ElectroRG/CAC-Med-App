@@ -23,7 +23,7 @@ class SplashPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 80.0),
             child: Container(
-              height: size.height - 325,
+              height: size.height - 260,
               width: size.width - 25,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(32),
@@ -104,12 +104,12 @@ class SplashPage extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 9),
-                              child: Image.network(
-                                'https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png',
+                              padding: const EdgeInsets.only(right: 5),
+                              child: Image.asset(
+                                'lib/images/Google.png',
                                 color: Colors.black,
-                                height: 30,
-                                width: 30,
+                                height: 35,
+                                width: 35,
                               ),
                             ),
                           ],
@@ -135,7 +135,8 @@ class SplashPage extends StatelessWidget {
                                   spreadRadius: 3,
                                   blurRadius: 3,
                                   offset: Offset(2, 0))
-                            ]),
+                            ],
+                        ),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -152,12 +153,11 @@ class SplashPage extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(right: 5),
-                                child: Image.network(
-                                  'https://images.vexels.com/content/129234/preview/apple-logo-icon-bf9728.png',
-                                  color: Colors.black,
-                                  height: 30,
-                                  width: 30,
+                                padding: const EdgeInsets.only(right: 1),
+                                child: Image.asset(
+                                  'lib/images/Apple.png',
+                                  height: 35,
+                                  width: 35,
                                 ),
                               )
                             ]),
@@ -199,11 +199,11 @@ class SplashPage extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 45),
+                              padding: const EdgeInsets.only(right: 40),
                               child: Icon(
                                 Icons.email_rounded,
                                 color: Colors.black,
-                                size: 30,
+                                size: 35,
                               ),
                             ),
                           ],
