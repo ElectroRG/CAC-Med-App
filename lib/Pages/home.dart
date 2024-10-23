@@ -298,8 +298,11 @@ class Home_two extends StatelessWidget {
                 ),
               ),
             ),
-        
 
+            ElevatedButton(
+              onPressed: () => signUserOut(context), // Call signUserOut method
+              child: const Text('Logout'),
+            ),
         
             //SizedBox(height: 400),
           ],

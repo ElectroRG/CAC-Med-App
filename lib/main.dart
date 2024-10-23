@@ -3,7 +3,7 @@ import 'package:cac_med_app/Pages/Doctor_chat.dart';
 import 'package:cac_med_app/Pages/auth_page.dart';
 import 'package:cac_med_app/Pages/chatbot_page.dart';
 import 'package:cac_med_app/Pages/home.dart';
-import 'package:cac_med_app/Pages/home_page.dart';
+//import 'package:cac_med_app/Pages/home_page.dart';
 import 'package:cac_med_app/Pages/registration_page.dart';
 import 'package:cac_med_app/Pages/splash_page.dart';
 import 'package:cac_med_app/navigation_menu.dart';
@@ -27,11 +27,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Med App',
-      home: Homepage(),
+      home: SplashPage(),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/home': (context) => Homepage(),
+        '/home': (context) => Home_two(),
         '/registration': (context) => Registration(),
         '/auth': (context) => AuthPage(),
         '/medshop': (context) => Medshop(),
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
     Widget page;
     switch (settings.name) {
       case '/home':
-        page = Homepage();
+        page = Home_two();
         break;
       case '/registration':
         page = Registration();
