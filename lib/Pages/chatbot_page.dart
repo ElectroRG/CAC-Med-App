@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 class Chatbot extends StatefulWidget {
-  Chatbot({super.key});
+  const Chatbot({super.key});
 
   @override
   State<Chatbot> createState() => _ChatbotState();

@@ -2,9 +2,9 @@ import 'package:cac_med_app/Pages/home_page.dart';
 import 'package:cac_med_app/components/textfield.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:cac_med_app/components/textfield.dart';
 
 class Registration extends StatefulWidget {
   const Registration({super.key});
@@ -98,7 +98,7 @@ class _RegistrationState extends State<Registration> {
                   Expanded(
                     child: RichText(
                       text: TextSpan(
-                        style: TextStyle(color: Colors.black, fontSize: 16),
+                        style: TextStyle(color: Colors.black, fontSize: 18),
                         children: [
                           TextSpan(text: "I accept the "),
                           TextSpan(
@@ -153,24 +153,29 @@ class _RegistrationState extends State<Registration> {
               ),
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 80),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Already have an account?',
-                  style: TextStyle(color: Colors.black),
+            RichText(
+              text: TextSpan(
+                text: 'Already have an account? ',
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
                 ),
-                const SizedBox(width: 4),
-                Text(
-                  'Log in',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
+                children: <TextSpan>[
+                  TextSpan(
+                    text: 'Log in',
+                    style: const TextStyle(
+                      color: Color.fromRGBO(103, 150, 210, 1),
+                      fontSize: 17,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.pushNamed(context, '/auth');
+                      },
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

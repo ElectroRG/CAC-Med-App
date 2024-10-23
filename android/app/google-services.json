@@ -12,7 +12,12 @@
           "package_name": "com.cac.pp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "929656079359-ljlv3s6vh04qfi43ombtao0mtl1qsva2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCRkC-UrbjsN55nDGmo1LzAbTy5vOpZ4w4"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929656079359-ljlv3s6vh04qfi43ombtao0mtl1qsva2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "929656079359-3g4iftjat6hn1ll8j0h5fge5hmb8efv9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.adit.rohan"
+              }
+            }
+          ]
         }
       }
     }

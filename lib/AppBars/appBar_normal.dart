@@ -12,7 +12,7 @@ class AppbarNormal extends StatelessWidget
     return ClipRRect(
       borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
-      child: Container(
+      child: SizedBox(
         height: height,
         child: CupertinoNavigationBar(
           middle: Align(
