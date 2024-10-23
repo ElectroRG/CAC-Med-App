@@ -51,7 +51,8 @@ class SplashPage extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontFamily: GoogleFonts.comfortaa().fontFamily,
                             fontSize: 30.0,
-                            decoration: TextDecoration.none),
+                            decoration: TextDecoration.none
+                        ),
                       ),
                     ),
                   ),

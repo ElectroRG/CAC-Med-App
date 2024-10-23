@@ -1,4 +1,5 @@
-import 'package:cac_med_app/Pages/home_page.dart';
+//mport 'package:cac_med_app/Pages/home_page.dart';
+import 'package:cac_med_app/Pages/home.dart';
 import 'package:cac_med_app/components/textfield.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
@@ -134,7 +135,7 @@ class _RegistrationState extends State<Registration> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Homepage(),
+                            builder: (context) => Home_two(),
                           ),
                         );
                         SystemChannels.textInput.invokeMethod('TextInput.hide');

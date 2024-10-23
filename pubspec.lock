@@ -369,7 +369,7 @@ packages:
     source: hosted
     version: "0.12.4+2"
   health:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: health
       sha256: "01d6318b2d813d4b87044f9adb5a588f672acd176434ac380259d28de1f321a4"

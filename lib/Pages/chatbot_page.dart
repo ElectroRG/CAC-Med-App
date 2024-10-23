@@ -1,8 +1,9 @@
 import 'dart:io';
-
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Chatbot extends StatefulWidget {
   const Chatbot({super.key});
@@ -12,9 +13,7 @@ class Chatbot extends StatefulWidget {
 }
 
 class _ChatbotState extends State<Chatbot> {
-  // gemini initialization
-  final apiKey =
-      Platform.environment['AIzaSyAI_pfX1CmlHRgaLKWI8_cfEtQyt9Ngpcs'];
+  final apiKey = Platform.environment['AIzaSyAI_pfX1CmlHRgaLKWI8_cfEtQyt9Ngpcs'];
 
   final gemini = GenerativeModel(
     model: 'gemini-1.5-pro-002',
@@ -24,28 +23,103 @@ class _ChatbotState extends State<Chatbot> {
   );
 
   ChatUser currentUser = ChatUser(id: '0', firstName: 'You');
-
   ChatUser geminiUser = ChatUser(id: '1', firstName: 'Gemini');
-
   List<ChatMessage> messages = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFB9D1EA),
-      body: _builUI(),
+      backgroundColor: const Color(0xFFB9D1EA),
+
+      body: Stack(
+        children: [
+          _buildUI(),
+
+
+          Positioned(
+            top: 80, // Adjust 'top' value to control vertical position
+            left: 30, // Adjust 'left' value to control horizontal position
+            child: Text(
+              'ChatBot',
+              style: TextStyle(
+                fontFamily: GoogleFonts.comfortaa().fontFamily,
+                fontWeight: FontWeight.w700,
+                fontSize: 30,
+                color: Color(0xFF185A87),
+              ),
+            ),
+          ),
+
+
+
+          Positioned(
+            top: 70,
+            right: 20,
+            child: Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(
+                  color: const Color(0xFF185A87),
+                  width: 4,
+                ),
+                color: Theme.of(context)
+                    .colorScheme
+                    .background
+                    .withOpacity(0.5),
+                boxShadow: [
+                  const BoxShadow(
+                    color: Color(0xFF185A87),
+                    spreadRadius: 0.5,
+                    blurRadius: 2,
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 25,
+                    backgroundImage: NetworkImage(
+                      FirebaseAuth.instance.currentUser?.photoURL ??
+                          "https://example.com/default-profile.png",
+                    ),
+                    onBackgroundImageError: (_, __) {
+                      print("Failed to load profile picture.");
+                    },
+                    child: FirebaseAuth.instance.currentUser?.photoURL == null
+                        ? const Icon(Icons.person, size: 40)
+                        : null,
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+
+
+
+
+
+        ],
+      ),
     );
   }
 
   Future<String?> getResponse(String input) async {
     GenerateContentResponse response =
-        await gemini.generateContent([Content.text(input)]);
+    await gemini.generateContent([Content.text(input)]);
     return response.text;
   }
 
-  Widget _builUI() {
+  Widget _buildUI() {
     return DashChat(
-        currentUser: currentUser, onSend: _sendMessage, messages: messages);
+      currentUser: currentUser,
+      onSend: _sendMessage,
+      messages: messages,
+      messageOptions: const MessageOptions(),
+    );
   }
 
   void _sendMessage(ChatMessage chatMessage) {
@@ -56,26 +130,23 @@ class _ChatbotState extends State<Chatbot> {
     try {
       String question = chatMessage.text;
 
-      // Start listening to the response from Gemini.
       gemini.generateContentStream([Content.text(question)]).listen(
-          (GenerateContentResponse event) {
-        // Get the response text from Gemini.
-        String responseText = (event.text).toString();
+              (GenerateContentResponse event) {
+            String responseText = (event.text).toString();
 
-        // Create a new ChatMessage for Gemini's response.
-        ChatMessage geminiResponse = ChatMessage(
-          user: geminiUser,
-          text: responseText,
-          createdAt: DateTime.now(),
-        );
+            ChatMessage geminiResponse = ChatMessage(
+              user: geminiUser,
+              text: responseText,
+              createdAt: DateTime.now(),
+            );
 
-        // Update the UI with Gemini's response.
-        setState(() {
-          messages = [geminiResponse, ...messages];
-        });
-      });
+            setState(() {
+              messages = [geminiResponse, ...messages];
+            });
+          });
     } catch (e) {
       print(e);
     }
   }
 }
+
