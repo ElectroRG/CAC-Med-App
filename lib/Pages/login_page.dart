@@ -2,6 +2,7 @@ import 'package:cac_med_app/components/MyButton.dart';
 import 'package:cac_med_app/components/squaretiles.dart';
 import 'package:cac_med_app/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:cac_med_app/components/textfield.dart';
 
@@ -86,7 +87,7 @@ class _LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    'Forgot Password ?',
+                    'Forgot Password?',
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -109,17 +110,24 @@ class _LoginState extends State<Login> {
                 children: [
                   Expanded(
                     child: Divider(
-                      thickness: 0.5,
+                      thickness: 0.9,
                       color: Colors.white,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text('Or Continue With'),
+                    child: Text(
+                        'Or',
+                        style: TextStyle(
+                          color: Colors.black,
+                          // fontWeight: FontWeight.bold,
+                          fontSize: 19.0,
+                        )
+                    ),
                   ),
                   Expanded(
                     child: Divider(
-                      thickness: 0.5,
+                      thickness: 0.9,
                       color: Colors.white,
                     ),
                   ),
@@ -129,36 +137,127 @@ class _LoginState extends State<Login> {
 
             const SizedBox(height: 25),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SquareTile(
-                  imagePath: 'lib/images/Google.png',
-                  onTap: () => AuthService().signInWithGoogle(),
-                  label: 'Sign in with Google',
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/registration');
+                },
+                child: Container(
+                  width: 353,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(28),
+                    color: const Color.fromRGBO(24, 90, 135, 100),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 0.15),
+                          spreadRadius: 3,
+                          blurRadius: 3,
+                          offset: Offset(2, 0))
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: Text(
+                          'Sign in with Google',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 5),
+                        child: Image.asset(
+                          'lib/images/Google.png',
+                          color: Colors.black,
+                          height: 35,
+                          width: 35,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/registration');
+                },
+                child: Container(
+                  width: 353,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(28),
+                    color: const Color.fromRGBO(24, 90, 135, 100),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 0.15),
+                          spreadRadius: 3,
+                          blurRadius: 3,
+                          offset: Offset(2, 0))
+                    ],
+                  ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text(
+                            'Sign in with Apple',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                              decoration: TextDecoration.none,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 1),
+                          child: Image.asset(
+                            'lib/images/Apple.png',
+                            height: 35,
+                            width: 35,
+                          ),
+                        )
+                      ]),
+                ),
+              ),
             ),
 
-            const SizedBox(height: 190),
+            const SizedBox(height: 100),
 
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'New User?',
-                  style: TextStyle(color: Colors.black),
+            RichText(
+              text: TextSpan(
+                text: 'New user? ',
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 17,
                 ),
-                const SizedBox(width: 4),
-                Text(
-                  'Register Now',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
+                children: <TextSpan>[
+                  TextSpan(
+                    text: 'Sign up',
+                    style: const TextStyle(
+                      color: Color.fromRGBO(103, 150, 210, 1),
+                      fontSize: 17,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.pushNamed(context, '/auth');
+                      },
                   ),
-                )
-              ],
+                ],
+              ),
             ),
           ],
         ),

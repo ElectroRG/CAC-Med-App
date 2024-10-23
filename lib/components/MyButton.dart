@@ -15,18 +15,19 @@ class MyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 340, // Set your desired width here
+      width: 340,
       child: CupertinoButton(
         onPressed: onTap,
-        color: Color(0xFF185A87), // Button color
-        padding: EdgeInsets.symmetric(vertical: 17.5), // Padding
-        borderRadius: BorderRadius.circular(12), // Rounded corners
+        color: const Color.fromRGBO(24, 90, 135, 100),
+        padding: EdgeInsets.symmetric(vertical: 17.5),
+        borderRadius: BorderRadius.circular(22),
         child: Text(
           buttonText,
           style: TextStyle(
             color: Colors.white,
-            fontSize: 15,
             fontWeight: FontWeight.bold,
+            fontSize: 18.0,
+            decoration: TextDecoration.none,
           ),
         ),
       ),

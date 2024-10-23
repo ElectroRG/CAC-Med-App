@@ -44,6 +44,7 @@ class SquareTile extends StatelessWidget {
                 errorBuilder: (context, error, stackTrace) {
                   return Icon(Icons.error, color: Colors.red); // Error handling for image
                 },
+
               ),
             ),
             SizedBox(width: 10), // Space between the image and the label

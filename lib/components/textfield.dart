@@ -20,16 +20,13 @@ class MyCupertinoTextField extends StatelessWidget {
       child: CupertinoTextField(
         controller: controller,
         obscureText: obscureText,
-        placeholder: hintText, // Set placeholder to an empty string to remove it
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10), // Padding inside the text field
+        placeholder: hintText,
+        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
         decoration: BoxDecoration(
-          color: Colors.white, // Background color
+          color: Colors.white,
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.white), // Border when disabled
+          border: Border.all(color: Colors.white),
         ),
-        // Remove prefix if you don't want any text in the text field
-        // Alternatively, if you want to keep a hint style, you can customize it differently.
-        // Example: If you want to keep an icon instead of text, you could do this:
       ),
     );
   }

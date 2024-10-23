@@ -4,11 +4,12 @@ import 'package:cac_med_app/Pages/auth_page.dart';
 import 'package:cac_med_app/Pages/chatbot_page.dart';
 import 'package:cac_med_app/Pages/home.dart';
 import 'package:cac_med_app/Pages/home_page.dart';
+import 'package:cac_med_app/Pages/login_page.dart';
 import 'package:cac_med_app/Pages/registration_page.dart';
 import 'package:cac_med_app/Pages/splash_page.dart';
-//import 'package:cac_med_app/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -24,9 +25,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return MaterialApp(
       title: 'Med App',
-      home: SplashPage(),
+      home: Medshop(),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
         '/registration': (context) => Registration(),
         '/auth': (context) => AuthPage(),
         '/medshop': (context) => Medshop(),
-        '/homepage': (context) => Home_two(),
+        '/homepage': (context) => Homepage(),
         '/aichat': (context) => Chatbot(),
         '/doctchat': (context) => DoctorChat(),
       },
