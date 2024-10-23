@@ -22,7 +22,7 @@ class AuthPage extends StatelessWidget {
               ),
             );
           } else if (snapshot.hasData) {
-            return HomeTwo(); // Ensure Home_two uses Cupertino widgets
+            return Home_two(); // Ensure Home_two uses Cupertino widgets
           } else {
             return Login(); // Ensure Login uses Cupertino widgets
           }

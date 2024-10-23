@@ -1,6 +1,5 @@
 //import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Carousel extends StatefulWidget {
@@ -21,7 +20,10 @@ class _CarouselState extends State<Carousel> {
         CarouselSlider(
           items: List.generate(widget.urls.length, (index) => MyImage(url: widget.urls[index])),
           options: CarouselOptions(
-            autoPlay: true, // Enable auto-play
+            autoPlay: true,
+            autoPlayInterval: Duration(seconds: 5),
+            autoPlayAnimationDuration: Duration(milliseconds: 1100),
+            animateToClosest: true,
             enlargeCenterPage: true, // Increase the size of the center item
             enableInfiniteScroll: false, // Enable infinite scroll
             onPageChanged: (index, reason) {
@@ -57,6 +59,7 @@ class MyImage extends StatelessWidget {
   final String url;
   const MyImage({super.key, required this.url});
 
+  @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
@@ -64,7 +67,7 @@ class MyImage extends StatelessWidget {
         url,
         height: 200,
         width: 300,
-        fit: BoxFit.cover,
+        fit: BoxFit.fitHeight,
       ),
     );
   }

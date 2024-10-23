@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 
 class ItemPage extends StatelessWidget {
   const ItemPage({super.key, required this.itemName, required this.url});
+
   final String itemName;
   final String url;
   final String price = "";
@@ -14,20 +15,28 @@ class ItemPage extends StatelessWidget {
     return CupertinoPageScaffold(
       navigationBar: AppbarNormal(title: itemName, height: 150),
       child: Center(
-          child: Column(children: [
-        Text(itemName),
-        Padding(padding: EdgeInsets.all(16)),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Image.asset(url,
-          height:300,
-          width: 300,
-          fit: BoxFit.fill,),
+        child: Column(
+          children: [
+            Text(
+                itemName
+            ),
+
+            Padding(padding: EdgeInsets.all(16)),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                url,
+                height: 300,
+                width: 300,
+                fit: BoxFit.fill,
+              ),
+            ),
+            DoneButton(
+              page: Medshop(),
+            )
+          ],
         ),
-        DoneButton(
-          page: Medshop(),
-        )
-      ])),
+      ),
     );
   }
 }

@@ -1,13 +1,21 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-// ignore: must_be_immutable
 class MedStoreItemIcons extends StatelessWidget {
-  MedStoreItemIcons(
-      {super.key, required this.name, this.imageUrl, required this.page});
   final String name;
   final String? imageUrl;
-  var page;
+  final String price;
+  final Widget page;
+  final BoxFit fit; // Add fit parameter for customizing image fit
+
+  MedStoreItemIcons({
+    super.key,
+    required this.name,
+    this.imageUrl,
+    required this.page,
+    required this.price,
+    this.fit = BoxFit.fill, // Default to BoxFit.fill if not provided
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +24,7 @@ class MedStoreItemIcons extends StatelessWidget {
         height: 200,
         width: 170,
         decoration: BoxDecoration(
-          color: Color.fromRGBO(218, 237, 255, 1),
+          color: const Color.fromRGBO(218, 237, 255, 1),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Center(
@@ -26,27 +34,29 @@ class MedStoreItemIcons extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: CupertinoColors.black,
                     fontSize: 20,
+                    decoration: TextDecoration.none,
                   ),
                 ),
               ),
-              if (imageUrl !=
-                  null) // To ensure imageUrl is not null before displaying the image
-                Image.asset(
+              if (imageUrl != null)
+                Image.network(
                   imageUrl!,
-                  height: 100,
+                  height: 122,
                   width: 170 - 30,
-                  fit: BoxFit.cover,
+                  fit: fit, // Use the fit parameter to customize image fit
                 ),
+              const Spacer(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Price: ',
-                  style: TextStyle(
+                  '\$$price',
+                  style: const TextStyle(
                     fontSize: 20,
                     color: CupertinoColors.black,
+                    decoration: TextDecoration.none,
                   ),
                 ),
               ),
@@ -57,7 +67,7 @@ class MedStoreItemIcons extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          CupertinoPageRoute(builder: (context) => page)
+          CupertinoPageRoute(builder: (context) => page),
         );
       },
     );

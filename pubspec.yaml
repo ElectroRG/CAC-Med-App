@@ -43,7 +43,7 @@ dependencies:
   firebase_auth: ^5.3.1
   google_sign_in: ^6.2.1
   firebase_core: ^3.6.0
-  email_validator: ^2.1.17
+  email_validator: ^3.0.0
   iconsax_flutter: ^1.0.0
   get: ^4.6.6
   animations: ^2.0.11
@@ -53,6 +53,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   google_fonts: ^6.2.1
+  health: ^11.1.0
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -77,6 +78,9 @@ flutter:
     - assets/health checkup.jpg 
     - assets/Medical Cartoon Vector.jpg
     - assets/Medical Time Cartoon Reminder.webp
+    - assets/Symptoms.png
+    - assets/Medshop.png
+    - assets/HealthMetrics.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

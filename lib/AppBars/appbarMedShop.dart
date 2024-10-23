@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart'; // Needed for animations
+// Needed for animations
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cac_med_app/Pages/Doctor_chat.dart';
 
 class Appbar1 extends StatefulWidget implements ObstructingPreferredSizeWidget {
-  Appbar1({
+  const Appbar1({
     super.key,
     required this.height,
     this.onPressed,
@@ -81,7 +81,7 @@ class _Appbar1State extends State<Appbar1> with SingleTickerProviderStateMixin {
           },
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: widget.height,
                 child: CupertinoNavigationBar(
                   backgroundColor: const Color.fromRGBO(103, 150, 198, 100),

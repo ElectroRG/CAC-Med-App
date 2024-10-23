@@ -4,11 +4,10 @@ import 'package:cac_med_app/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cac_med_app/components/textfield.dart';
-import 'package:flutter/cupertino.dart';
 
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({super.key});
 
   @override
   _LoginState createState() => _LoginState();
@@ -134,7 +133,7 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SquareTile(
-                  imagePath: 'lib/images/Google.png', // Replace with your Google logo asset path
+                  imagePath: 'lib/images/Google.png',
                   onTap: () => AuthService().signInWithGoogle(),
                   label: 'Sign in with Google',
                 ),
