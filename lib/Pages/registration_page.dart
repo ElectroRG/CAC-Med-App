@@ -132,12 +132,7 @@ class _RegistrationState extends State<Registration> {
               height: 55,
               child: CupertinoButton(
                 onPressed: isLoginValid() ? () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Home_two(),
-                          ),
-                        );
+                        Navigator.pushNamed(context, '/navmenu');
                         SystemChannels.textInput.invokeMethod('TextInput.hide');
                       }
                       : null,
