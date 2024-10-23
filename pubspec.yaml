@@ -67,15 +67,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-  fonts:
-    - family: Comfortaa
-      fonts:
-        - asset: assets/fonts/Comfortaa-Regular.ttf
-        - asset: assets/fonts/Comfortaa-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Comfortaa-Light.ttf
-          weight: 300
-
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
