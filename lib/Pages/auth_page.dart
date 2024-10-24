@@ -1,4 +1,5 @@
 import 'package:cac_med_app/Pages/home.dart';
+import 'package:cac_med_app/navigation_menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../pages/login_page.dart';
@@ -22,7 +23,7 @@ class AuthPage extends StatelessWidget {
               ),
             );
           } else if (snapshot.hasData) {
-            return Home_two(); // Ensure Home_two uses Cupertino widgets
+            return NavigationMenu(); // Ensure Home_two uses Cupertino widgets
           } else {
             return Login(); // Ensure Login uses Cupertino widgets
           }

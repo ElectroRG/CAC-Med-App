@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
         '/homepage': (context) => Home_two(),
         '/aichat': (context) => Chatbot(),
         '/doctchat': (context) => DoctorChat(),
+        '/nav': (context) => NavigationMenu(),
       },
       onGenerateRoute: _generateRoute,
     );
@@ -45,6 +46,9 @@ class MyApp extends StatelessWidget {
   Route _generateRoute(RouteSettings settings) {
     Widget page;
     switch (settings.name) {
+      case '/nav':
+        page = NavigationMenu();
+        break;
       case '/home':
         page = Home_two();
         break;

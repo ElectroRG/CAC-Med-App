@@ -45,12 +45,12 @@ class MedStoreItemIcons extends StatelessWidget {
                 Image.network(
                   imageUrl!,
                   height: 112,
-                  width: 170 - 30,
+                  width: 170 - 20,
                   fit: fit, // Use the fit parameter to customize image fit
                 ),
-              const Spacer(),
+              // const Spacer(),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(4),
                 child: Text(
                   '\$$price',
                   style: const TextStyle(
