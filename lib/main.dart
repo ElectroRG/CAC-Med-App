@@ -3,7 +3,6 @@ import 'package:cac_med_app/Pages/Doctor_chat.dart';
 import 'package:cac_med_app/Pages/auth_page.dart';
 import 'package:cac_med_app/Pages/chatbot_page.dart';
 import 'package:cac_med_app/Pages/home.dart';
-// import 'package:cac_med_app/Pages/home_page.dart';
 //import 'package:cac_med_app/Pages/home_page.dart';
 import 'package:cac_med_app/Pages/registration_page.dart';
 import 'package:cac_med_app/Pages/settings.dart';
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Med App',
-      home: Home_two(),
+      home: SplashPage(),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
@@ -50,6 +49,8 @@ class MyApp extends StatelessWidget {
   Route _generateRoute(RouteSettings settings) {
     Widget page;
     switch (settings.name) {
+      case '/splash':
+        page = SplashPage();
       case '/home':
         page = Home_two();
         break;

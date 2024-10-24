@@ -232,7 +232,7 @@ class SplashPage extends StatelessWidget {
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      Navigator.pushNamed(context, '/auth');
+                      Navigator.pushNamed(context, '/registration');
                     },
                 ),
               ],
