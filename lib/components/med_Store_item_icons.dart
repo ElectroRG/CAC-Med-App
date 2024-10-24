@@ -21,7 +21,7 @@ class MedStoreItemIcons extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        height: 200,
+        height: 210,
         width: 170,
         decoration: BoxDecoration(
           color: const Color.fromRGBO(218, 237, 255, 1),
