@@ -1,3 +1,4 @@
+import 'package:cac_med_app/Pages/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:get/get.dart';
@@ -55,7 +56,7 @@ class NavigationController extends GetxController{
     Home_two(),
     Chatbot(),
     Medshop(),
-    Medshop(),
+    Settings(),
   ];
 
 }

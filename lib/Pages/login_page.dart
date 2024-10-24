@@ -253,7 +253,7 @@ class _LoginState extends State<Login> {
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Navigator.pushNamed(context, '/auth');
+                        Navigator.pushNamed(context, '/registration');
                       },
                   ),
                 ],
