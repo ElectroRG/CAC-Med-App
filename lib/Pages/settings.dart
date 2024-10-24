@@ -9,9 +9,11 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
-      child: const Text('Log out'),
+      child: Center(child: const Text('Log out')),
       onPressed: () async {
         _signOut();
+        print('logged out');
+        Navigator.pushNamed(context, '/splash');
       },
     );
   }

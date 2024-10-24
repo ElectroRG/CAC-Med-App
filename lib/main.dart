@@ -6,6 +6,7 @@ import 'package:cac_med_app/Pages/home.dart';
 // import 'package:cac_med_app/Pages/home_page.dart';
 //import 'package:cac_med_app/Pages/home_page.dart';
 import 'package:cac_med_app/Pages/registration_page.dart';
+import 'package:cac_med_app/Pages/settings.dart';
 import 'package:cac_med_app/Pages/splash_page.dart';
 import 'package:cac_med_app/navigation_menu.dart';
 //import 'package:cac_med_app/pages/splash_page.dart';
@@ -34,15 +35,18 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => Home_two(),
         '/registration': (context) => Registration(),
+        '/splash': (context) => SplashPage(),
         '/auth': (context) => AuthPage(),
         '/medshop': (context) => Medshop(),
         '/homepage': (context) => Home_two(),
         '/aichat': (context) => Chatbot(),
         '/doctchat': (context) => DoctorChat(),
+        '/settings': (context) => Settings()
       },
       onGenerateRoute: _generateRoute,
     );
   }
+
   Route _generateRoute(RouteSettings settings) {
     Widget page;
     switch (settings.name) {
@@ -70,6 +74,8 @@ class MyApp extends StatelessWidget {
       case '/navmenu':
         page = NavigationMenu();
         break;
+      case '/settings':
+        page = Settings();
       default:
         page = Scaffold(
           body: Center(
@@ -84,7 +90,8 @@ class MyApp extends StatelessWidget {
         const end = Offset.zero; // End at normal position
         const curve = Curves.ease;
 
-        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
         return SlideTransition(
           position: animation.drive(tween),
