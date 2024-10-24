@@ -1,43 +1,107 @@
-import 'package:cac_med_app/AppBars/appBar_normal.dart';
-import 'package:cac_med_app/Medstore/med_shop_page.dart';
-import 'package:cac_med_app/components/done_button.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:google_generative_ai/google_generative_ai.dart';
 
-class ItemPage extends StatelessWidget {
-  const ItemPage({super.key, required this.itemName, required this.url});
+class ItemPage extends StatefulWidget {
+  const ItemPage({super.key, required String itemName, required String url});
 
-  final String itemName;
-  final String url;
-  final String price = "";
+  @override
+  State<ItemPage> createState() => _GenerateInfoScreenState();
+}
+
+class _GenerateInfoScreenState extends State<ItemPage> {
+  String apiKey = "AIzaSyAI_pfX1CmlHRgaLKWI8_cfEtQyt9Ngpcsy";
+  late GenerativeModel model;
+  late String responseData;
+  late bool isLoading;
+
+  // Predefined prompt set by the programmer
+  final String predefinedPrompt = "Explain the principles of quantum mechanics in simple terms.";
+
+  @override
+  void initState() {
+    super.initState();
+    model = GenerativeModel(
+      model: 'gemini-1.5-pro-002',
+      apiKey: apiKey,
+    );
+    responseData = "";
+    setLoading(false);
+  }
+
+  void setLoading(bool value) {
+    setState(() {
+      isLoading = value;
+    });
+  }
+
+  Future<void> generateContent() async {
+    final content = [Content.text(predefinedPrompt)];
+    setLoading(true);
+    try {
+      final response = await model.generateContent(content);
+      if (response.candidates.isNotEmpty) {
+        responseData = response.text ?? "";
+        setState(() {});
+      } else {
+        responseData = "No data found!";
+      }
+    } catch (error) {
+      responseData = "Something went wrong!";
+    }
+    setLoading(false);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      backgroundColor: Color(0xFFB9D1EA),
-      navigationBar: AppbarNormal(title: itemName, height: 150),
-      child: Center(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Generative AI"),
+        centerTitle: true,
+      ),
+      body: _buildScreen(context),
+    );
+  }
+
+  Widget _buildScreen(BuildContext context) {
+    return SafeArea(
+      child: SingleChildScrollView(
         child: Column(
           children: [
-            Text(
-                itemName
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: generateContent,
+              child: const Text("Generate Answer"),
             ),
-
-            Padding(padding: EdgeInsets.all(16)),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                url,
-                height: 300,
-                width: 300,
-                fit: BoxFit.fill,
+            const SizedBox(height: 20),
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                minWidth: MediaQuery.of(context).size.width * 0.8,
+                minHeight: MediaQuery.of(context).size.height * 0.5,
+              ),
+              child: isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Text(
+                    responseData.isEmpty
+                        ? "No data found"
+                        : responseData,
+                  ),
+                ),
               ),
             ),
-            DoneButton(
-              page: Medshop(),
-            )
           ],
         ),
       ),
     );
   }
 }
+
+
+
+
+
+
+
+

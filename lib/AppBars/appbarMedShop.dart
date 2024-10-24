@@ -81,46 +81,7 @@ class _Appbar1State extends State<Appbar1> with SingleTickerProviderStateMixin {
           },
           child: Column(
             children: [
-              SizedBox(
-                height: widget.height,
-                child: CupertinoNavigationBar(
-                  backgroundColor: const Color.fromRGBO(103, 150, 198, 100),
-                  leading: SizedBox(
-                    width: 50,
-                    child: CupertinoButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: _toggleDrawer, // Open the custom side drawer
-                      child: Icon(
-                        CupertinoIcons.bars,
-                        color: CupertinoColors.white,
-                        size: 40,
-                      ),
-                    ),
-                  ),
-                  trailing: CupertinoButton(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    child: const Icon(
-                      CupertinoIcons.chat_bubble_text_fill,
-                      size: 30,
-                      color: CupertinoColors.white,
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) => DoctorChat()));
-                    },
-                  ),
-                  middle: Text(
-                    'm Store',
-                    style: GoogleFonts.eduVicWaNtBeginner(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: CupertinoColors.white,
-                    ),
-                  ),
-                ),
-              ),
+              SizedBox(height: 70),
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 16.0, vertical: 10.0),
@@ -139,7 +100,7 @@ class _Appbar1State extends State<Appbar1> with SingleTickerProviderStateMixin {
           child: Align(
             alignment: Alignment.centerLeft,
             child: Container(
-              height: 900,
+              height: 1000,
               width: 250,
               color: CupertinoColors.systemGrey,
               child: Column(
