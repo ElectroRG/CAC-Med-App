@@ -1,38 +1,89 @@
-import 'package:cac_med_app/Services/health_repository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:health/health.dart';
-import 'lib/Services/health_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class Home_two extends StatelessWidget {
-  Home_two({super.key});
+class Home_two extends StatefulWidget {
+  @override
+  _Home_twoState createState() => _Home_twoState();
+}
 
+class _Home_twoState extends State<Home_two> {
   // Class variables for different health metrics
   int steps = 6192;
-  double height = 1.75; // height in meters
-  double weight = 70.0; // weight in kg
-  double distanceTraveled = 5.4; // distance in kilometers
+  double heightMeters = 1.75; // height in meters
+  double weightKg = 70.0; // weight in kg
+  double distanceKm = 5.4; // distance in kilometers
   double bmi = 22.9; // BMI calculation
 
-  HealthRepository healthRepository = HealthRepository();
+  Map<String, int?> goals = {
+    'Steps': null,
+    'Height': null,
+    'Weight': null,
+    'Distance': null,
+    'BMI': null,
+  };
+
+  // Conversion methods
+  String metersToFeetAndInches(double meters) {
+    double totalInches = meters * 39.4;
+    int feet = totalInches ~/ 12;
+    int inches = totalInches % 12 ~/ 1;
+    return '$feet\'$inches"';
+  }
+
+  String kgToPounds(double kg) {
+    double pounds = kg * 2.2;
+    return '${pounds.toStringAsFixed(2)} lbs';
+  }
+
+  String kmToMiles(double km) {
+    double miles = km * 0.621371;
+    return '${miles.toStringAsFixed(2)} mi';
+  }
 
   void signUserOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacementNamed(context, '/login');
   }
 
-  Future<void> fetchData(HealthDataType type, int value) async {
-    steps = (await healthRepository.fetchData(type, value))!;
-    print('Data written to health');
+  Future<void> setGoal(String label) async {
+    int? goal = goals[label];
+
+    TextEditingController goalController = TextEditingController();
+
+    // Show a dialog to input a goal
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Set $label Goal'),
+          content: TextField(
+            controller: goalController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(hintText: 'Enter your $label goal'),
+          ),
+          actions: [
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () => Navigator.pop(context),
+            ),
+            TextButton(
+              child: const Text('Set'),
+              onPressed: () {
+                setState(() {
+                  goals[label] = int.tryParse(goalController.text);
+                });
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    healthRepository.init();
-    fetchData(HealthDataType.STEPS, 6192);
-
     return Scaffold(
       backgroundColor: const Color(0xFFB9D1EA),
       body: SingleChildScrollView(
@@ -40,7 +91,6 @@ class Home_two extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(height: 75),
-
             Row(
               children: [
                 Padding(
@@ -78,29 +128,20 @@ class Home_two extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            radius: 25,
-                            backgroundImage: NetworkImage(
-                              FirebaseAuth.instance.currentUser?.photoURL ?? "https://example.com/default-profile.png",
-                            ),
-                            onBackgroundImageError: (_, __) {
-                              print("Failed to load profile picture.");
-                            },
-                            child: FirebaseAuth.instance.currentUser?.photoURL == null
-                                ? const Icon(Icons.person, size: 40)
-                                : null,
-                          ),
-                        ],
+                      child: CircleAvatar(
+                        radius: 25,
+                        backgroundImage: NetworkImage(
+                          FirebaseAuth.instance.currentUser?.photoURL ?? "https://example.com/default-profile.png",
+                        ),
+                        child: FirebaseAuth.instance.currentUser?.photoURL == null
+                            ? const Icon(Icons.person, size: 40)
+                            : null,
                       ),
                     ),
                   ),
                 ),
               ],
             ),
-
             SizedBox(height: 25),
 
             // Steps box
@@ -110,11 +151,10 @@ class Home_two extends StatelessWidget {
 
             // Row for Height and Weight
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                buildMetricCard('Height', '${height.toStringAsFixed(2)} m', '', Icons.height, width: 190),
-                //SizedBox(width: 0),
-                buildMetricCard('Weight', '${weight.toStringAsFixed(1)} kg', 'Stable', Icons.monitor_weight, width: 145),
+                buildMetricCard('Height', metersToFeetAndInches(heightMeters), '', Icons.height, width: 145),
+                buildMetricCard('Weight', kgToPounds(weightKg), 'Stable', Icons.monitor_weight, width: 175),
               ],
             ),
 
@@ -124,7 +164,7 @@ class Home_two extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                buildMetricCard('Distance', '${distanceTraveled.toStringAsFixed(1)} km', 'Up 10% from yesterday', Icons.directions_run, width: 140),
+                buildMetricCard('Distance', kmToMiles(distanceKm), 'Up 10% from yesterday', Icons.directions_run, width: 140),
                 SizedBox(width: 15),
                 buildMetricCard('BMI', '${bmi.toStringAsFixed(1)}', 'Healthy range', Icons.accessibility_new, width: 195),
               ],
@@ -132,7 +172,7 @@ class Home_two extends StatelessWidget {
 
             SizedBox(height: 15),
 
-            // Add more metrics as needed
+            // Other metric box
             buildMetricCard('Other Metric', 'Value', 'Trend info', Icons.insights),
 
             ElevatedButton(
@@ -147,68 +187,72 @@ class Home_two extends StatelessWidget {
 
   // Helper method to build metric cards
   Widget buildMetricCard(String label, String value, String trend, IconData icon, {double width = 350, double height = 150}) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20),
-      child: Material(
-        elevation: 2,
-        borderRadius: BorderRadius.circular(30.0),
-        color: Color.fromRGBO(255, 255, 255, 100),
-        child: ClipRRect(
+    int? goal = goals[label];
+    return GestureDetector(
+      onDoubleTap: () => setGoal(label),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 15, right: 15),
+        child: Material(
+          elevation: 2,
           borderRadius: BorderRadius.circular(30.0),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Color(0xFF185A87),
-                width: 3,
+          color: Color.fromRGBO(255, 255, 255, 100),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(30.0),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color(0xFF185A87),
+                  width: 3,
+                ),
+                borderRadius: BorderRadius.circular(30.0),
               ),
-              borderRadius: BorderRadius.circular(30.0),
-            ),
-            child: Container(
-              width: width,
-              height: height,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          label,
-                          style: TextStyle(
-                            fontFamily: GoogleFonts.comfortaa().fontFamily,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20,
-                            color: Color(0xFF185A87),
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          value,
-                          style: TextStyle(
-                            fontFamily: GoogleFonts.comfortaa().fontFamily,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20,
-                            color: Color(0xFF185A87),
-                          ),
-                        ),
-                        if (trend.isNotEmpty)
+              child: Container(
+                width: width,
+                height: height,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                           Text(
-                            trend,
+                            label,
                             style: TextStyle(
                               fontFamily: GoogleFonts.comfortaa().fontFamily,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20,
                               color: Color(0xFF185A87),
                             ),
                           ),
-                      ],
+                          SizedBox(height: 10),
+                          Text(
+                            goal != null ? '$value/$goal' : value,
+                            style: TextStyle(
+                              fontFamily: GoogleFonts.comfortaa().fontFamily,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20,
+                              color: Color(0xFF185A87),
+                            ),
+                          ),
+                          if (trend.isNotEmpty)
+                            Text(
+                              trend,
+                              style: TextStyle(
+                                fontFamily: GoogleFonts.comfortaa().fontFamily,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                                color: Color(0xFF185A87),
+                              ),
+                            ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Icon(icon, size: 70, color: Color(0xFF185A87)),
-                ],
+                    Icon(icon, size: 60, color: Color(0xFF185A87)),
+                  ],
+                ),
               ),
             ),
           ),

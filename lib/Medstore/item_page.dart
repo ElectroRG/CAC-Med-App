@@ -1,13 +1,11 @@
 import 'package:cac_med_app/AppBars/appBar_normal.dart';
-import 'package:cac_med_app/Medstore/med_shop_page.dart';
-import 'package:cac_med_app/components/done_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_vertexai/firebase_vertexai.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class ItemPage extends StatefulWidget {
-  ItemPage({super.key, required this.itemName, required this.url});
+  const ItemPage({super.key, required this.itemName, required this.url});
 
   final String itemName;
   final String url;
@@ -17,10 +15,9 @@ class ItemPage extends StatefulWidget {
 }
 
 class _ItemPageState extends State<ItemPage> {
-  final String price = "";
-  late final model;
-  late final Stream response;
-  List<String> generatedTexts = []; // To store the generated texts
+  late final GenerativeModel model;
+  List<String> generatedTexts = []; // To store generated texts
+  bool isLoading = true; // Loading state for the AI response
 
   @override
   void initState() {
@@ -32,16 +29,25 @@ class _ItemPageState extends State<ItemPage> {
     await Firebase.initializeApp(); // Ensure Firebase is initialized
     model = FirebaseVertexAI.instance.generativeModel(model: 'gemini-1.5-flash');
 
-    // Provide a prompt that contains text
+    // Provide a prompt
     final prompt = [Content.text('Write a story about a magic backpack.')];
 
-    // To stream generated text output, call generateContentStream with the text input
-    response = model.generateContentStream(prompt);
-
-    // Stream the generated content
-    await for (final chunk in response) {
+    // Start streaming the generated content
+    try {
+      final response = model.generateContentStream(prompt);
+      await for (final chunk in response) {
+        setState(() {
+          generatedTexts.add(chunk.text ?? "");
+        });
+      }
+    } catch (e) {
+      // Handle any errors that may occur during streaming
       setState(() {
-        generatedTexts.add(chunk.text); // Add the generated text to the list
+        generatedTexts.add('Error generating content: $e');
+      });
+    } finally {
+      setState(() {
+        isLoading = false; // Stop the loading spinner once content is fetched
       });
     }
   }
@@ -49,12 +55,13 @@ class _ItemPageState extends State<ItemPage> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: Color(0xFFB9D1EA),
+      backgroundColor: const Color(0xFFB9D1EA),
       navigationBar: AppbarNormal(title: widget.itemName, height: 100),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Display header text
             Text(
               'Hi',
               style: TextStyle(
@@ -62,33 +69,36 @@ class _ItemPageState extends State<ItemPage> {
                 fontWeight: FontWeight.w700,
                 fontSize: 25,
                 decoration: TextDecoration.none,
-                color: Color(0xFF185A87),
+                color: const Color(0xFF185A87),
               ),
             ),
-            // Display the generated texts
-            for (var text in generatedTexts)
-              Text(
-                text,
-                style: TextStyle(
-                  fontFamily: GoogleFonts.comfortaa().fontFamily,
-                  fontSize: 16,
-                  color: Color(0xFF185A87),
+            const SizedBox(height: 20), // Add some spacing
+            // Show loading indicator while waiting for response
+            if (isLoading)
+              const CupertinoActivityIndicator(radius: 20)
+            else if (generatedTexts.isNotEmpty)
+            // Display the generated text once it is ready
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: generatedTexts.map((text) {
+                    return Text(
+                      text,
+                      style: TextStyle(
+                        fontFamily: GoogleFonts.comfortaa().fontFamily,
+                        fontSize: 16,
+                        color: const Color(0xFF185A87),
+                      ),
+                      textAlign: TextAlign.center,
+                    );
+                  }).toList(),
                 ),
-              ),
+              )
+            else
+              const Text('No content generated.'),
           ],
         ),
       ),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
