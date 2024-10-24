@@ -10,8 +10,8 @@ class Home_two extends StatefulWidget {
 class _Home_twoState extends State<Home_two> {
   // Class variables for different health metrics
   int steps = 6192;
-  double heightMeters = 1.75; // height in meters
-  double weightKg = 70.0; // weight in kg
+  double heightMeters = 2; // height in meters
+  int weightKg = 70; // weight in kg
   double distanceKm = 5.4; // distance in kilometers
   double bmi = 22.9; // BMI calculation
 
@@ -24,11 +24,8 @@ class _Home_twoState extends State<Home_two> {
   };
 
   // Conversion methods
-  String metersToFeetAndInches(double meters) {
-    double totalInches = meters * 39.4;
-    int feet = totalInches ~/ 12;
-    int inches = totalInches % 12 ~/ 1;
-    return '$feet\'$inches"';
+  String height(int ft, int inch) {
+    return ft.toString() + 'ft ' + inch.toString() + 'in';
   }
 
   String kgToPounds(double kg) {
@@ -39,6 +36,10 @@ class _Home_twoState extends State<Home_two> {
   String kmToMiles(double km) {
     double miles = km * 0.621371;
     return '${miles.toStringAsFixed(2)} mi';
+  }
+  
+  String sleepHours(int hours, int min) {
+    return hours.toString() + 'h ' + min.toString() + 'm';
   }
 
   void signUserOut(BuildContext context) async {
@@ -153,8 +154,8 @@ class _Home_twoState extends State<Home_two> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                buildMetricCard('Height', metersToFeetAndInches(heightMeters), '', Icons.height, width: 145),
-                buildMetricCard('Weight', kgToPounds(weightKg), 'Stable', Icons.monitor_weight, width: 175),
+                buildMetricCard('Height', height(5,10), '', Icons.height, width: 160),
+                buildMetricCard('Weight', (weightKg * 2.2).toInt().toString() + ' lb', 'Stable', Icons.monitor_weight, width: 170),
               ],
             ),
 
@@ -162,23 +163,19 @@ class _Home_twoState extends State<Home_two> {
 
             // Row for Distance Traveled and BMI
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                buildMetricCard('Distance', kmToMiles(distanceKm), 'Up 10% from yesterday', Icons.directions_run, width: 140),
-                SizedBox(width: 15),
-                buildMetricCard('BMI', '${bmi.toStringAsFixed(1)}', 'Healthy range', Icons.accessibility_new, width: 195),
+                buildMetricCard('Sleep', sleepHours(8, 24), 'Down 9%', Icons.bed, width: 185),
+
+                buildMetricCard('BMI', '${bmi.toStringAsFixed(1)}', 'Healthy', Icons.accessibility_new, width: 145),
               ],
             ),
 
             SizedBox(height: 15),
 
             // Other metric box
-            buildMetricCard('Other Metric', 'Value', 'Trend info', Icons.insights),
+            buildMetricCard('Distance', kmToMiles(distanceKm), 'Down 9%', Icons.route_outlined),
 
-            ElevatedButton(
-              onPressed: () => signUserOut(context),
-              child: const Text('Logout'),
-            ),
           ],
         ),
       ),
@@ -191,7 +188,7 @@ class _Home_twoState extends State<Home_two> {
     return GestureDetector(
       onDoubleTap: () => setGoal(label),
       child: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15),
+        padding: const EdgeInsets.only(left: 10, right: 10),
         child: Material(
           elevation: 2,
           borderRadius: BorderRadius.circular(30.0),
