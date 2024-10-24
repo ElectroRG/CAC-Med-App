@@ -4,6 +4,7 @@ import 'package:cac_med_app/Pages/auth_page.dart';
 import 'package:cac_med_app/Pages/chatbot_page.dart';
 import 'package:cac_med_app/Pages/home.dart';
 // import 'package:cac_med_app/Pages/home_page.dart';
+//import 'package:cac_med_app/Pages/home_page.dart';
 import 'package:cac_med_app/Pages/registration_page.dart';
 import 'package:cac_med_app/Pages/splash_page.dart';
 import 'package:cac_med_app/navigation_menu.dart';
