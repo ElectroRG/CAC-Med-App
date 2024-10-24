@@ -1,102 +1,89 @@
-import 'package:flutter/material.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:cac_med_app/AppBars/appBar_normal.dart';
+import 'package:cac_med_app/Medstore/med_shop_page.dart';
+import 'package:cac_med_app/components/done_button.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_vertexai/firebase_vertexai.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class ItemPage extends StatefulWidget {
-  const ItemPage({super.key, required String itemName, required String url});
+  ItemPage({super.key, required this.itemName, required this.url});
+
+  final String itemName;
+  final String url;
 
   @override
-  State<ItemPage> createState() => _GenerateInfoScreenState();
+  _ItemPageState createState() => _ItemPageState();
 }
 
-class _GenerateInfoScreenState extends State<ItemPage> {
-  String apiKey = "AIzaSyAI_pfX1CmlHRgaLKWI8_cfEtQyt9Ngpcsy";
-  late GenerativeModel model;
-  late String responseData;
-  late bool isLoading;
-
-  // Predefined prompt set by the programmer
-  final String predefinedPrompt = "Explain the principles of quantum mechanics in simple terms.";
+class _ItemPageState extends State<ItemPage> {
+  final String price = "";
+  late final model;
+  late final Stream response;
+  List<String> generatedTexts = []; // To store the generated texts
 
   @override
   void initState() {
     super.initState();
-    model = GenerativeModel(
-      model: 'gemini-1.5-pro-002',
-      apiKey: apiKey,
-    );
-    responseData = "";
-    setLoading(false);
+    _initializeModel();
   }
 
-  void setLoading(bool value) {
-    setState(() {
-      isLoading = value;
-    });
-  }
+  Future<void> _initializeModel() async {
+    await Firebase.initializeApp(); // Ensure Firebase is initialized
+    model = FirebaseVertexAI.instance.generativeModel(model: 'gemini-1.5-flash');
 
-  Future<void> generateContent() async {
-    final content = [Content.text(predefinedPrompt)];
-    setLoading(true);
-    try {
-      final response = await model.generateContent(content);
-      if (response.candidates.isNotEmpty) {
-        responseData = response.text ?? "";
-        setState(() {});
-      } else {
-        responseData = "No data found!";
-      }
-    } catch (error) {
-      responseData = "Something went wrong!";
+    // Provide a prompt that contains text
+    final prompt = [Content.text('Write a story about a magic backpack.')];
+
+    // To stream generated text output, call generateContentStream with the text input
+    response = model.generateContentStream(prompt);
+
+    // Stream the generated content
+    await for (final chunk in response) {
+      setState(() {
+        generatedTexts.add(chunk.text); // Add the generated text to the list
+      });
     }
-    setLoading(false);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Generative AI"),
-        centerTitle: true,
-      ),
-      body: _buildScreen(context),
-    );
-  }
-
-  Widget _buildScreen(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
+    return CupertinoPageScaffold(
+      backgroundColor: Color(0xFFB9D1EA),
+      navigationBar: AppbarNormal(title: widget.itemName, height: 100),
+      child: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: generateContent,
-              child: const Text("Generate Answer"),
-            ),
-            const SizedBox(height: 20),
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                minWidth: MediaQuery.of(context).size.width * 0.8,
-                minHeight: MediaQuery.of(context).size.height * 0.5,
+            Text(
+              'Hi',
+              style: TextStyle(
+                fontFamily: GoogleFonts.comfortaa().fontFamily,
+                fontWeight: FontWeight.w700,
+                fontSize: 25,
+                decoration: TextDecoration.none,
+                color: Color(0xFF185A87),
               ),
-              child: isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  : Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Text(
-                    responseData.isEmpty
-                        ? "No data found"
-                        : responseData,
-                  ),
+            ),
+            // Display the generated texts
+            for (var text in generatedTexts)
+              Text(
+                text,
+                style: TextStyle(
+                  fontFamily: GoogleFonts.comfortaa().fontFamily,
+                  fontSize: 16,
+                  color: Color(0xFF185A87),
                 ),
               ),
-            ),
           ],
         ),
       ),
     );
   }
 }
+
+
+
 
 
 

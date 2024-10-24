@@ -113,7 +113,7 @@ class Home_two extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 buildMetricCard('Height', '${height.toStringAsFixed(2)} m', '', Icons.height, width: 190),
-                SizedBox(width: 15),
+                //SizedBox(width: 0),
                 buildMetricCard('Weight', '${weight.toStringAsFixed(1)} kg', 'Stable', Icons.monitor_weight, width: 145),
               ],
             ),
