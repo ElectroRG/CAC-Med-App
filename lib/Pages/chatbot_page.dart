@@ -122,28 +122,53 @@ class _ChatbotState extends State<Chatbot> {
     );
   }
 
-  void _sendMessage(ChatMessage chatMessage) {
+ void _sendMessage(ChatMessage chatMessage) {
     setState(() {
       messages = [chatMessage, ...messages];
     });
 
     try {
       String question = chatMessage.text;
+      String accumulatedResponse = ""; // Accumulate the streamed text
+      int geminiIndex = -1; // Track the index of the Gemini response message
 
       gemini.generateContentStream([Content.text(question)]).listen(
-              (GenerateContentResponse event) {
-            String responseText = (event.text).toString();
+        (GenerateContentResponse event) {
+          accumulatedResponse += event.text.toString();
 
+          // If this is the first snippet, create the new message
+          if (geminiIndex == -1) {
             ChatMessage geminiResponse = ChatMessage(
               user: geminiUser,
-              text: responseText,
+              text: accumulatedResponse, // Set the initial text
               createdAt: DateTime.now(),
             );
 
             setState(() {
               messages = [geminiResponse, ...messages];
+              geminiIndex = 0; // Track where the Gemini response is in the list
             });
+          } else {
+            // Update the text of the existing Gemini message
+            setState(() {
+              messages[geminiIndex] = ChatMessage(
+                user: geminiUser,
+                text: accumulatedResponse, // Update the text as it streams
+                createdAt: messages[geminiIndex].createdAt,
+              );
+            });
+          }
+        },
+        onDone: () {
+          // Optional: Finalize the response when the stream ends
+          setState(() {
+            // The final response is already updated
           });
+        },
+        onError: (error) {
+          print("Error: $error");
+        },
+      );
     } catch (e) {
       print(e);
     }

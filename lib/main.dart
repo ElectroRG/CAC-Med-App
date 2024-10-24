@@ -6,6 +6,7 @@ import 'package:cac_med_app/Pages/home.dart';
 //import 'package:cac_med_app/Pages/home_page.dart';
 import 'package:cac_med_app/Pages/registration_page.dart';
 import 'package:cac_med_app/Pages/splash_page.dart';
+import 'package:cac_med_app/Pages/terms_and_conditions.dart';
 import 'package:cac_med_app/navigation_menu.dart';
 //import 'package:cac_med_app/pages/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/home': (context) => Home_two(),
+        '/terms': (context) => TermsAndConditions(),
         '/registration': (context) => Registration(),
         '/auth': (context) => AuthPage(),
         '/medshop': (context) => Medshop(),
@@ -46,8 +48,10 @@ class MyApp extends StatelessWidget {
   Route _generateRoute(RouteSettings settings) {
     Widget page;
     switch (settings.name) {
-      case '/nav':
-        page = NavigationMenu();
+      case '/splash':
+        page = SplashPage();
+      case '/terms':
+        page = TermsAndConditions();
         break;
       case '/home':
         page = Home_two();
